@@ -1,0 +1,20 @@
+module.exports = {
+    extends: ['landr'],
+    rules: {
+        'no-trailing-spaces': 'off',
+        'prettier/prettier': 'off',
+        'spaced-comment': 'warn',
+        'no-empty': 'off',
+        '@typescript-eslint/no-unused-vars': 'off',
+        '@typescript-eslint/explicit-function-return-type': 'off',
+        '@typescript-eslint/naming-convention': 'off',
+        '@typescript-eslint/type-annotation-spacing': 'off',
+        '@typescript-eslint/no-empty-function': 'off',
+        'prefer-template': 'off',
+        'space-before-blocks': 'off',
+        '@typescript-eslint/no-explicit-any': 'warn',
+        'no-console': 1,
+        'no-debugger': 1,
+        'eol-last': 'off',
+    },
+};
