@@ -27,8 +27,16 @@ export const App = () => {
                         }}
                     >
                         <RootStack.Screen name="Home" component={HomeScreen} />
-                        <RootStack.Screen name="WondersDuel" component={WondersDuelScreen} />
-                        <RootStack.Screen name="Crew" component={CrewScreen} />
+                        <RootStack.Screen
+                            name="WondersDuel"
+                            component={WondersDuelScreen}
+                            options={{ title: '7 wonders: duel' }}
+                        />
+                        <RootStack.Screen
+                            name="Crew"
+                            component={CrewScreen}
+                            options={{ title: 'The Crew: The quest for planet nine' }}
+                        />
                     </RootStack.Navigator>
                 </NavigationContainer>
             </ApplicationProvider>
