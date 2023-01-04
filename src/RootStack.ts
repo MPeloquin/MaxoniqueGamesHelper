@@ -1,9 +1,12 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { Mission } from '@/screens/Crew/types';
 
 export type RootStackParamList = {
-    Home: undefined;
+    Games: undefined;
     WondersDuel: undefined;
-    Crew: undefined;
+    CrewHome: undefined;
+    Logbook: undefined;
+    Mission: { mission: Mission };
 };
 
 export const RootStack = createNativeStackNavigator<RootStackParamList>();

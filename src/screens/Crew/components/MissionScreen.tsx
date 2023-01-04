@@ -1,8 +1,8 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { CrewStackParamList } from 'src/screens/crew/Stack';
 import React from 'react';
+import { RootStackParamList } from '@/RootStack';
 
-type MissionScreenProps = NativeStackScreenProps<CrewStackParamList, 'Mission'>;
+type MissionScreenProps = NativeStackScreenProps<RootStackParamList, 'Mission'>;
 export const MissionScreen: React.FC<MissionScreenProps> = () => {
     return <></>;
 };

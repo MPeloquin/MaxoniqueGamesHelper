@@ -2,7 +2,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React from 'react';
 import { Layout } from '@ui-kitten/components';
 import { TouchableOpacity, Image, StyleSheet } from 'react-native';
-import { RootStackParamList } from 'src/RootStack';
+import { RootStackParamList } from '@/RootStack';
 
 const styles = StyleSheet.create({
     container: {
@@ -18,12 +18,12 @@ const styles = StyleSheet.create({
     },
 });
 
-type HomeScreenProps = NativeStackScreenProps<RootStackParamList, 'Home'>;
+type GamesScreenProps = NativeStackScreenProps<RootStackParamList, 'Games'>;
 
-export const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
+export const GamesHomeScreen: React.FC<GamesScreenProps> = ({ navigation }) => {
     return (
         <Layout style={styles.container}>
-            <TouchableOpacity onPress={() => navigation.navigate('Crew')}>
+            <TouchableOpacity onPress={() => navigation.navigate('CrewHome')}>
                 <Image style={styles.logo} source={require('../../../assets/crew/box.jpg')} />
             </TouchableOpacity>
             <TouchableOpacity onPress={() => navigation.navigate('WondersDuel')}>

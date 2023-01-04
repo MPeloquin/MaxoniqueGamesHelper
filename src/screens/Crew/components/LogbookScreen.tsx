@@ -1,9 +1,8 @@
 import React from 'react';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { CrewStackParamList } from '../Stack';
+import { RootStackParamList } from '@/RootStack';
 
-
-type LogbookScreenProps = NativeStackScreenProps<CrewStackParamList, 'Logbook'>;
+type LogbookScreenProps = NativeStackScreenProps<RootStackParamList, 'Logbook'>;
 export const LogbookScreen: React.FC<LogbookScreenProps> = () => {
     return <></>;
 };
