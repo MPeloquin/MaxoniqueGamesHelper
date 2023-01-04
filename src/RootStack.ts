@@ -1,4 +1,5 @@
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createNativeStackNavigator, NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useNavigation } from '@react-navigation/native';
 import { Mission } from '@/screens/Crew/types';
 
 export type RootStackParamList = {
@@ -9,4 +10,6 @@ export type RootStackParamList = {
     Mission: { mission: Mission };
 };
 
+export type RootNavigation = NativeStackNavigationProp<RootStackParamList>;
 export const RootStack = createNativeStackNavigator<RootStackParamList>();
+export const useRootNavigation = () => useNavigation<RootNavigation>();

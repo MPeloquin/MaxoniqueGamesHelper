@@ -1,6 +1,13 @@
 import React from 'react';
-import { ImageSourcePropType, Image } from 'react-native';
-import { tokenStyles } from 'src/screens/crew/components/Tokens/styles';
+import { ImageSourcePropType, Image, StyleSheet } from 'react-native';
+
+export const tokenStyles = StyleSheet.create({
+    small: {
+        height: 75,
+        width: 75,
+        marginHorizontal: 5,
+    },
+});
 
 interface TokenProps {
     source: ImageSourcePropType;
