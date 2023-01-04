@@ -24,7 +24,7 @@ export const CrewScreen: React.FC<CrewScreenProps> = () => {
 type CrewHomeScreenProps = NativeStackScreenProps<CrewStackParamList, 'CrewHome'>;
 const CrewHomeScreen: React.FC<CrewHomeScreenProps> = ({ navigation }) => {
     return (
-        <Layout style={{ flex: 1 }}>
+        <Layout style={{ flex: 1, padding: 20 }}>
             <Button onPress={() => navigation.navigate('Logbook')}>Logbook</Button>
         </Layout>
     );

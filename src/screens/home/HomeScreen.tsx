@@ -24,10 +24,10 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
     return (
         <Layout style={styles.container}>
             <TouchableOpacity onPress={() => navigation.navigate('Crew')}>
-                <Image style={styles.logo} source={require('../../../assets/crewPlanetNine.jpg')} />
+                <Image style={styles.logo} source={require('../../../assets/crew/box.jpg')} />
             </TouchableOpacity>
             <TouchableOpacity onPress={() => navigation.navigate('WondersDuel')}>
-                <Image style={styles.logo} source={require('../../../assets/7wondersduel.jpg')} />
+                <Image style={styles.logo} source={require('../../../assets/wonders/box.jpg')} />
             </TouchableOpacity>
         </Layout>
     );
