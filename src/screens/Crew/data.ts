@@ -271,6 +271,7 @@ export const Missions: Mission[] = [
             before2: true,
             before3: true,
         },
+        deadZone: true,
     },
     {
         id: 40,

@@ -1,28 +1,18 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React from 'react';
 import { Layout, Text } from '@ui-kitten/components';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { RootStackParamList } from '@/RootStack';
+import { TaskCards } from './components/TaskCards';
+import { Disruption } from './components/Disruption';
 import { TaskTokens } from './components/TaskTokens';
+import { DeadZone } from './components/DeadZone';
+import { CommanderDecision } from './components/CommanderDecision';
+import { CommanderDistribution } from './components/CommanderDistribution';
 
 const styles = StyleSheet.create({
     instructionsTitle: { fontSize: 30 },
     instructionsText: { fontSize: 20, paddingVertical: 10 },
-    numberTaskCardsContainer: {
-        display: 'flex',
-        alignItems: 'center',
-        paddingVertical: 20,
-    },
-    numberTaskCards: {
-        padding: 20,
-        textAlign: 'center',
-        fontSize: 60,
-        width: 100,
-        backgroundColor: '#3366ff',
-        borderRadius: 10,
-        overflow: 'hidden',
-        color: 'white',
-    },
 });
 
 type MissionScreenProps = NativeStackScreenProps<RootStackParamList, 'Mission'>;
@@ -33,11 +23,7 @@ export const MissionScreen: React.FC<MissionScreenProps> = ({
 }) => {
     return (
         <Layout style={{ flex: 1, padding: 10 }}>
-            {mission.numberTaskCards && (
-                <View style={styles.numberTaskCardsContainer}>
-                    <Text style={styles.numberTaskCards}>{mission.numberTaskCards}</Text>
-                </View>
-            )}
+            {mission.numberTaskCards && <TaskCards numberTaskCards={mission.numberTaskCards} />}
             {mission.instructions && (
                 <>
                     <Text category="h2" style={styles.instructionsTitle}>
@@ -47,6 +33,10 @@ export const MissionScreen: React.FC<MissionScreenProps> = ({
                 </>
             )}
             {mission.taskTokens && <TaskTokens taskTokens={mission.taskTokens} />}
+            {mission.deadZone && <DeadZone />}
+            {mission.disruption && <Disruption tricks={mission.disruption} />}
+            {mission.commanderDecision && <CommanderDecision tasks={mission.commanderDecision} />}
+            {mission.commanderDistribution && <CommanderDistribution />}
         </Layout>
     );
 };
