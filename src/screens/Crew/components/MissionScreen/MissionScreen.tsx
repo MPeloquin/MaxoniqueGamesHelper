@@ -3,11 +3,16 @@ import React from 'react';
 import { Layout, Text } from '@ui-kitten/components';
 import { StyleSheet, View } from 'react-native';
 import { RootStackParamList } from '@/RootStack';
-import { TaskTokens } from './TaskTokens';
+import { TaskTokens } from './components/TaskTokens';
 
 const styles = StyleSheet.create({
     instructionsTitle: { fontSize: 30 },
     instructionsText: { fontSize: 20, paddingVertical: 10 },
+    numberTaskCardsContainer: {
+        display: 'flex',
+        alignItems: 'center',
+        paddingVertical: 20,
+    },
     numberTaskCards: {
         padding: 20,
         textAlign: 'center',
@@ -29,7 +34,7 @@ export const MissionScreen: React.FC<MissionScreenProps> = ({
     return (
         <Layout style={{ flex: 1, padding: 10 }}>
             {mission.numberTaskCards && (
-                <View style={{ display: 'flex', alignItems: 'center', paddingVertical: 20 }}>
+                <View style={styles.numberTaskCardsContainer}>
                     <Text style={styles.numberTaskCards}>{mission.numberTaskCards}</Text>
                 </View>
             )}
