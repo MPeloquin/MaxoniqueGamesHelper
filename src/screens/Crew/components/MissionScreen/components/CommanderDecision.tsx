@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     textNumber: {
         fontSize: 40,
         padding: 10,
-        backgroundColor: '#3366ff',
+        backgroundColor: '#2251a6',
         color: 'white',
         fontWeight: 'bold',
         borderRadius: 10,

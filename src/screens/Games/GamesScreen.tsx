@@ -5,6 +5,7 @@ import { WondersDuelScreen } from '@/screens/Wonders/WondersDuelScreen';
 import { LogbookScreen } from '@/screens/Crew/components/LogbookScreen';
 import { MissionScreen } from '@/screens/Crew/components/MissionScreen';
 import { CrewHomeScreen } from '@/screens/Crew/CrewHomeScreen';
+import { getMissionScreenTitle } from '@/screens/Crew/components/MissionScreen/getMissionScreenTitle';
 import { GamesHomeScreen } from './GamesHomeScreen';
 
 export const GamesScreen: React.FC = () => {
@@ -14,7 +15,7 @@ export const GamesScreen: React.FC = () => {
                 initialRouteName="Games"
                 screenOptions={{
                     headerStyle: {
-                        backgroundColor: '#3366FF',
+                        backgroundColor: '#2251a6',
                     },
                     headerTintColor: '#fff',
                     headerTitleStyle: {
@@ -37,9 +38,7 @@ export const GamesScreen: React.FC = () => {
                 <RootStack.Screen
                     name="Mission"
                     component={MissionScreen}
-                    options={({ route }) => {
-                        return { title: `Mission #${route.params.mission.id}` };
-                    }}
+                    options={({ route }) => ({ title: getMissionScreenTitle(route.params.mission) })}
                 />
             </RootStack.Navigator>
         </NavigationContainer>

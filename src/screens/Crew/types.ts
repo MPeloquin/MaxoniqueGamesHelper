@@ -1,3 +1,5 @@
+import { MissionsProgressStore } from './store';
+
 export type Mission = {
     id: number;
     numberTaskCards?: number;
@@ -18,4 +20,8 @@ export type Mission = {
     instructions?: string;
     commanderDecision?: number;
     commanderDistribution?: boolean;
+};
+
+export type MissionWithProgress = Mission & {
+    progress?: MissionsProgressStore['progress'][number];
 };
