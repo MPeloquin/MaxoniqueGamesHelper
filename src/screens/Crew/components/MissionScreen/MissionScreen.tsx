@@ -5,6 +5,7 @@ import { StyleSheet, View } from 'react-native';
 import { RootStackParamList, useRootNavigation } from '@/RootStack';
 import { useMissionProgressStore } from '@/screens/Crew/store';
 import { getMissionScreenTitle } from '@/screens/Crew/components/MissionScreen/getMissionScreenTitle';
+import { Missions } from '@/screens/Crew/data';
 import { TaskCards } from './components/TaskCards';
 import { Disruption } from './components/Disruption';
 import { TaskTokens } from './components/TaskTokens';
@@ -75,6 +76,9 @@ export const MissionScreen: React.FC<MissionScreenProps> = ({
                     appearance="ghost"
                     accessoryRight={<Icon name="checkmark-circle-outline" />}
                     onPress={() => {
+                        if (mission.id !== Missions[Missions.length - 1].id) {
+                            navigation.replace('Mission', { mission: Missions[mission.id + 1] });
+                        }
                         completeMission(mission.id);
                     }}
                 >
