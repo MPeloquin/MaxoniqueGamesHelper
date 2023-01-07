@@ -24,10 +24,10 @@ export const GamesHomeScreen: React.FC<GamesScreenProps> = ({ navigation }) => {
     return (
         <Layout style={styles.container}>
             <TouchableOpacity onPress={() => navigation.navigate('CrewHome')}>
-                <Image style={styles.logo} source={require('../../../assets/crew/box.jpg')} />
+                <Image style={styles.logo} source={require('@/../assets/crew/box.webp')} />
             </TouchableOpacity>
             <TouchableOpacity onPress={() => navigation.navigate('WondersDuel')}>
-                <Image style={styles.logo} source={require('../../../assets/wonders/box.jpg')} />
+                <Image style={styles.logo} source={require('@/../assets/wonders/box.webp')} />
             </TouchableOpacity>
         </Layout>
     );

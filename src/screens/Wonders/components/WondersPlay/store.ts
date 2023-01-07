@@ -13,6 +13,13 @@ export enum ProgressTokens {
     'Urbanism' = 'urbanism',
 }
 
+export enum TokenStatus {
+    'Box' = 'box',
+    'Player' = 'player',
+    'Game' = 'game',
+    'NotUsable' = 'notUsable',
+}
+
 export type Player = {
     id: number;
     money: number;
@@ -24,11 +31,13 @@ export type Player = {
 export type WondersStore = {
     players: Player[];
     militaryScore: number;
-    progressTokens: { [key in ProgressTokens]: boolean };
+    progressTokens: { [key in ProgressTokens]: TokenStatus };
     updatePlayerMoney: (playerId: number) => (amount: number) => void;
     updateMilitaryScore: (amount: number) => void;
     selectProgressToken: (token: ProgressTokens, playerId: number) => void;
     initializeGame: () => void;
+    returnTokenToGame: (token: ProgressTokens) => void;
+    returnTokenToBox: (token: ProgressTokens) => void;
 };
 
 function getRandomKeys<T extends object>(obj: T, num: number): (keyof T)[] {
@@ -42,6 +51,16 @@ function getRandomKeys<T extends object>(obj: T, num: number): (keyof T)[] {
     return randomKeys;
 }
 
+function takeRandom<T>(array: T[], count: number): T[] {
+    const copy = [...array];
+    const result = [];
+    for (let i = 0; i < count; i++) {
+        const index = Math.floor(Math.random() * copy.length);
+        result.push(copy.splice(index, 1)[0]);
+    }
+    return result;
+}
+
 export const useWondersGameStore = create<WondersStore>((set, get) => ({
     players: [
         { id: 0, money: 7, progressTokens: [], hasLostFiveCoins: false, hasLostTwoCoins: false },
@@ -49,27 +68,34 @@ export const useWondersGameStore = create<WondersStore>((set, get) => ({
     ],
     militaryScore: 0,
     progressTokens: {
-        [ProgressTokens.Agriculture]: false,
-        [ProgressTokens.Architecture]: false,
-        [ProgressTokens.Economy]: false,
-        [ProgressTokens.Law]: false,
-        [ProgressTokens.Masonry]: false,
-        [ProgressTokens.Mathematics]: false,
-        [ProgressTokens.Philosophy]: false,
-        [ProgressTokens.Strategy]: false,
-        [ProgressTokens.Theology]: false,
-        [ProgressTokens.Urbanism]: false,
+        [ProgressTokens.Agriculture]: TokenStatus.NotUsable,
+        [ProgressTokens.Architecture]: TokenStatus.NotUsable,
+        [ProgressTokens.Economy]: TokenStatus.NotUsable,
+        [ProgressTokens.Law]: TokenStatus.NotUsable,
+        [ProgressTokens.Masonry]: TokenStatus.NotUsable,
+        [ProgressTokens.Mathematics]: TokenStatus.NotUsable,
+        [ProgressTokens.Philosophy]: TokenStatus.NotUsable,
+        [ProgressTokens.Strategy]: TokenStatus.NotUsable,
+        [ProgressTokens.Theology]: TokenStatus.NotUsable,
+        [ProgressTokens.Urbanism]: TokenStatus.NotUsable,
     },
     initializeGame: () => {
         set((state) => {
             const selectedTokens = getRandomKeys(state.progressTokens, 5);
             const newProgressTokens = { ...state.progressTokens };
-            for (const key of Object.keys(newProgressTokens) as ProgressTokens[]) {
-                newProgressTokens[key] = false;
-            }
+            const notSelectedTokens = Object.keys(newProgressTokens).filter(
+                (key) => !selectedTokens.includes(key as ProgressTokens),
+            );
+            const boxTokens = takeRandom(notSelectedTokens, 3) as ProgressTokens[];
 
+            for (const key of Object.keys(newProgressTokens) as ProgressTokens[]) {
+                newProgressTokens[key] = TokenStatus.NotUsable;
+            }
+            for (const key of boxTokens) {
+                newProgressTokens[key] = TokenStatus.Box;
+            }
             for (const key of selectedTokens) {
-                newProgressTokens[key] = true;
+                newProgressTokens[key] = TokenStatus.Game;
             }
 
             return {
@@ -121,9 +147,35 @@ export const useWondersGameStore = create<WondersStore>((set, get) => ({
             return {
                 progressTokens: {
                     ...state.progressTokens,
-                    [token]: false,
+                    [token]: TokenStatus.Player,
                 },
                 players: updatedPlayers,
+            };
+        }),
+    returnTokenToGame: (token) =>
+        set((state) => {
+            const players = [...state.players];
+            players[0].progressTokens = players[0].progressTokens.filter((t) => t !== token);
+            players[1].progressTokens = players[1].progressTokens.filter((t) => t !== token);
+            return {
+                progressTokens: {
+                    ...state.progressTokens,
+                    [token]: TokenStatus.Game,
+                },
+                players,
+            };
+        }),
+    returnTokenToBox: (token) =>
+        set((state) => {
+            const players = [...state.players];
+            players[0].progressTokens = players[0].progressTokens.filter((t) => t !== token);
+            players[1].progressTokens = players[1].progressTokens.filter((t) => t !== token);
+            return {
+                players,
+                progressTokens: {
+                    ...state.progressTokens,
+                    [token]: TokenStatus.Box,
+                },
             };
         }),
 }));

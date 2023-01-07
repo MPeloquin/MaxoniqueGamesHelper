@@ -2,6 +2,7 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Button, Text, Icon } from '@ui-kitten/components';
 import { useWondersGameStore } from '../store';
+import { ProgressPlayerTokenComponent } from './ProgressTokenComponent';
 
 interface PlayerComponentProps {
     playerId: number;
@@ -16,6 +17,13 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         marginTop: 10,
+    },
+    tokensContainer: {
+        display: 'flex',
+        flexDirection: 'row',
+        marginTop: 10,
+        maxWidth: 150,
+        flexWrap: 'wrap',
     },
 });
 
@@ -44,6 +52,11 @@ export const PlayerComponent: React.FC<PlayerComponentProps> = ({ playerId }) =>
                     status="success"
                     accessoryLeft={<Icon name="plus-outline" />}
                 />
+            </View>
+            <View style={styles.tokensContainer}>
+                {player.progressTokens.map((token) => {
+                    return <ProgressPlayerTokenComponent key={token} token={token} />;
+                })}
             </View>
         </View>
     );
