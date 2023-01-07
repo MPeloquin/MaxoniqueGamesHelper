@@ -18,7 +18,7 @@ export const WondersPlayScreen: React.FC = () => {
     }, [gameStore.initializeGame]);
 
     return (
-        <Layout style={{ flex: 1 }}>
+        <Layout style={{ flex: 1, paddingVertical: 10 }}>
             <SafeAreaView
                 style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', height: '100%' }}
             >

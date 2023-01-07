@@ -14,8 +14,8 @@ const styles = StyleSheet.create({
     },
     triggerButton: {
         position: 'absolute',
-        bottom: 20,
-        right: 20,
+        bottom: 0,
+        right: 10,
     },
 });
 
