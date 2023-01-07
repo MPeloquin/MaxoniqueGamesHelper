@@ -3,7 +3,6 @@
     "name": "Maxonique Games Helper",
     "slug": "maxoniquegameshelper",
     "version": "1.0.0",
-    "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "dark",
     "splash": {
@@ -19,6 +18,7 @@
     ],
     "ios": {
       "supportsTablet": true,
+      "requireFullScreen": true,
       "bundleIdentifier": "com.mpeloquin.maxoniquegameshelper"
     },
     "android": {
@@ -35,6 +35,14 @@
         "projectId": "5a71167e-b603-4d75-8b27-cb672b25ea82"
       }
     },
-    "owner": "mpeloquin"
+    "owner": "mpeloquin",
+    "plugins": [
+      [
+        "expo-screen-orientation",
+        {
+          "initialOrientation": "ALL"
+        }
+      ]
+    ]
   }
 }

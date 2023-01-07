@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         padding: 20,
-        justifyContent: 'space-between',
+        justifyContent: 'space-around',
     },
     logo: {
         width: 150,

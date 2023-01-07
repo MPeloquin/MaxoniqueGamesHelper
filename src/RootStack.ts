@@ -5,6 +5,8 @@ import { MissionWithProgress } from '@/screens/Crew/types';
 export type RootStackParamList = {
     Games: undefined;
     WondersDuel: undefined;
+    WondersPlay: undefined;
+    WondersScore: undefined;
     CrewHome: undefined;
     Logbook: undefined;
     Mission: { mission: MissionWithProgress };

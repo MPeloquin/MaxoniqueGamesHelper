@@ -2,6 +2,7 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { RootStack } from '@/RootStack';
 import { WondersDuelScreen } from '@/screens/Wonders/WondersDuelScreen';
+import { WondersPlayScreen } from '@/screens/Wonders/components/WondersPlay/WondersPlayScreen';
 import { LogbookScreen } from '@/screens/Crew/components/LogbookScreen';
 import { MissionScreen } from '@/screens/Crew/components/MissionScreen';
 import { CrewHomeScreen } from '@/screens/Crew/CrewHomeScreen';
@@ -28,6 +29,11 @@ export const GamesScreen: React.FC = () => {
                     name="WondersDuel"
                     component={WondersDuelScreen}
                     options={{ title: '7 wonders: duel' }}
+                />
+                <RootStack.Screen
+                    name="WondersPlay"
+                    component={WondersPlayScreen}
+                    options={{ title: 'Play', headerShown: false }}
                 />
                 <RootStack.Screen
                     name="CrewHome"
