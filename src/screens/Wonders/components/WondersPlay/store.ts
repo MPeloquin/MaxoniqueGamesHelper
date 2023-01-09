@@ -124,19 +124,19 @@ export const useWondersGameStore = create<WondersStore>((set, get) => ({
 
             if (newScore <= -3 && !updatedPlayer1.hasLostTwoCoins) {
                 updatedPlayer1.hasLostTwoCoins = true;
-                updatedPlayer1.money -= 2;
+                updatedPlayer1.money = Math.max(updatedPlayer1.money - 2, 0);
             }
             if (newScore <= -6 && !updatedPlayer1.hasLostFiveCoins) {
                 updatedPlayer1.hasLostFiveCoins = true;
-                updatedPlayer1.money -= 5;
+                updatedPlayer1.money = Math.max(updatedPlayer1.money - 5, 0);
             }
             if (newScore >= 3 && !updatedPlayer2.hasLostTwoCoins) {
                 updatedPlayer2.hasLostTwoCoins = true;
-                updatedPlayer2.money -= 2;
+                updatedPlayer2.money = Math.max(updatedPlayer2.money - 2, 0);
             }
             if (newScore >= 6 && !updatedPlayer2.hasLostFiveCoins) {
                 updatedPlayer2.hasLostFiveCoins = true;
-                updatedPlayer2.money -= 5;
+                updatedPlayer2.money = Math.max(updatedPlayer2.money - 5, 0);
             }
             return { militaryScore: newScore, players: [updatedPlayer1, updatedPlayer2] };
         }),

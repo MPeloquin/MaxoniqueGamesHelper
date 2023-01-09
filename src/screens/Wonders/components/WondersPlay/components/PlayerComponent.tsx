@@ -43,7 +43,6 @@ export const PlayerComponent: React.FC<PlayerComponentProps> = ({ playerId }) =>
     }));
 
     const [debouncedMoney, setDebouncedMoney] = useState(player.money);
-
     useEffect(() => {
         if (timeout) {
             clearTimeout(timeout);
@@ -51,6 +50,12 @@ export const PlayerComponent: React.FC<PlayerComponentProps> = ({ playerId }) =>
         timeout = setTimeout(() => {
             setDebouncedMoney(player.money);
         }, 2500);
+
+        return () => {
+            if (timeout) {
+                clearTimeout(timeout);
+            }
+        };
     }, [player.money]);
 
     return (

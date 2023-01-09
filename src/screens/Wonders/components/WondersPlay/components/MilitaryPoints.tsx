@@ -2,6 +2,7 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Button, Icon, Text } from '@ui-kitten/components';
 import { useWondersGameStore } from '../store';
+import { ConflictComponent } from './ConflictComponent';
 
 const styles = StyleSheet.create({
     buttonsContainer: {
@@ -19,18 +20,21 @@ export const MilitaryPoints: React.FC = () => {
     }));
 
     return (
-        <View style={styles.buttonsContainer}>
-            <Button
-                appearance="outline"
-                onPress={() => updateMilitaryScore(-1)}
-                accessoryLeft={<Icon name="arrowhead-left-outline" />}
-            />
-            <Text style={{ fontSize: 30, fontWeight: '900', padding: 20 }}> {militaryScore}</Text>
-            <Button
-                appearance="outline"
-                onPress={() => updateMilitaryScore(1)}
-                accessoryLeft={<Icon name="arrowhead-right-outline" />}
-            />
-        </View>
+        <>
+            <View style={styles.buttonsContainer}>
+                <Button
+                    appearance="outline"
+                    onPress={() => updateMilitaryScore(-1)}
+                    accessoryLeft={<Icon name="arrowhead-left-outline" />}
+                />
+                <Text style={{ fontSize: 30, fontWeight: '900', padding: 20 }}> {militaryScore}</Text>
+                <Button
+                    appearance="outline"
+                    onPress={() => updateMilitaryScore(1)}
+                    accessoryLeft={<Icon name="arrowhead-right-outline" />}
+                />
+            </View>
+            <ConflictComponent />
+        </>
     );
 };
