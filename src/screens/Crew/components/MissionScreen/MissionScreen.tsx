@@ -77,7 +77,7 @@ export const MissionScreen: React.FC<MissionScreenProps> = ({
                     accessoryRight={<Icon name="checkmark-circle-outline" />}
                     onPress={() => {
                         if (mission.id !== Missions[Missions.length - 1].id) {
-                            navigation.replace('Mission', { mission: Missions[mission.id + 1] });
+                            navigation.replace('Mission', { mission: Missions[mission.id] });
                         }
                         completeMission(mission.id);
                     }}

@@ -20,7 +20,13 @@ export const WondersPlayScreen: React.FC = () => {
     return (
         <Layout style={{ flex: 1, paddingVertical: 10 }}>
             <SafeAreaView
-                style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', height: '100%' }}
+                style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    height: '100%',
+                    padding: 20,
+                }}
             >
                 <PlayerComponent playerId={0} />
                 <View style={{ flex: 1 }}>

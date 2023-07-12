@@ -1,8 +1,8 @@
 import React from 'react';
-import { View, StyleSheet, ImageBackground, Image } from 'react-native';
+import { View, StyleSheet, ImageBackground, Image, Platform } from 'react-native';
 import { useWondersGameStore } from '@/screens/Wonders/components/WondersPlay/store';
 
-const styles = StyleSheet.create({
+const stylesiPhone = StyleSheet.create({
     conflictContainer: {
         flex: 1,
         justifyContent: 'center',
@@ -48,8 +48,63 @@ const styles = StyleSheet.create({
         zIndex: 2,
     },
     board: {
-        zIndex: 1,
-        maxWidth: 100,
+        width: '110%',
+        height: '100%',
+        marginLeft: '-7%',
+    },
+});
+
+const stylesiPad = StyleSheet.create({
+    conflictContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        position: 'relative',
+        overflow: 'visible',
+    },
+    conflict: {
+        height: 40 * 1.5,
+        width: 40 * 1.5,
+        position: 'absolute',
+        top: 2,
+        zIndex: 2,
+    },
+    playerOne5Coins: {
+        height: 32 * 1.5,
+        width: 73 * 1.5,
+        position: 'absolute',
+        top: 88,
+        left: 15,
+        zIndex: 2,
+    },
+    playerOne2Coins: {
+        height: 30 * 1.5,
+        width: 67 * 1.5,
+        position: 'absolute',
+        top: 92,
+        left: 165,
+        zIndex: 2,
+    },
+    playerTwo5Coins: {
+        height: 32 * 1.8,
+        width: 73 * 1.8,
+        position: 'absolute',
+        top: 95,
+        right: 30,
+        zIndex: 2,
+    },
+    playerTwo2Coins: {
+        height: 30 * 1.5,
+        width: 67 * 1.5,
+        position: 'absolute',
+        top: 100,
+        right: 215,
+        zIndex: 2,
+    },
+    board: {
+        width: '110%',
+        height: '100%',
+        marginLeft: '-10%',
+        marginBottom: '10%',
     },
 });
 
@@ -75,13 +130,41 @@ const positionAdjustment: { [key in string]: number } = {
     '9': 0.8,
 };
 
+const positionAdjustmentiPad: { [key in string]: number } = {
+    '-9': 7.6,
+    '-8': 5.8,
+    '-7': 4.5,
+    '-6': 3.5,
+    '-5': 2.5,
+    '-4': 1.5,
+    '-3': 1,
+    '-2': 0,
+    '-1': -1,
+    '0': -1.5,
+    '1': -2,
+    '2': -2.7,
+    '3': -3,
+    '4': -3.2,
+    '5': -3.7,
+    '6': -4,
+    '7': -4.2,
+    '8': -4.5,
+    '9': -4,
+};
+
 export const ConflictComponent: React.FC = () => {
+    const isIpad = Platform.OS === 'ios' && Platform.isPad;
+    const styles = isIpad ? stylesiPad : stylesiPhone;
+
     const { militaryScore, players } = useWondersGameStore((state) => ({
         militaryScore: state.militaryScore,
         players: state.players,
     }));
 
-    const position = militaryScore * 6.5 + 45 + positionAdjustment[String(militaryScore)];
+    const position =
+        militaryScore * 6.5 +
+        45 +
+        (isIpad ? positionAdjustmentiPad[String(militaryScore)] : positionAdjustment[String(militaryScore)]);
 
     return (
         <View style={styles.conflictContainer}>
@@ -102,8 +185,9 @@ export const ConflictComponent: React.FC = () => {
                 source={require('@/../assets/wonders/conflict.webp')}
             />
             <ImageBackground
+                resizeMode="contain"
                 source={require('@/../assets/wonders/board.webp')}
-                style={{ width: '110%', height: '100%', marginLeft: '-7%' }}
+                style={styles.board}
             >
                 <View />
             </ImageBackground>
